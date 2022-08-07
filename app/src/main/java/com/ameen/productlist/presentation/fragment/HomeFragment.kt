@@ -13,6 +13,7 @@ import com.ameen.productlist.core.wrapper.ResultWrapper
 import com.ameen.productlist.databinding.FragmentHomeBinding
 import com.ameen.productlist.domain.model.ProductModel
 import com.ameen.productlist.presentation.adapter.ProductsAdapter
+import com.ameen.productlist.presentation.dialog.ShowProductDialog
 import com.ameen.productlist.presentation.extentions.hide
 import com.ameen.productlist.presentation.extentions.show
 import com.ameen.productlist.presentation.listener.ProductItemClickListener
@@ -80,7 +81,7 @@ class HomeFragment : Fragment(), ProductItemClickListener {
     }
 
     override fun onProductItemClicked(selectedProduct: ProductModel) {
-
+        ShowProductDialog(requireContext(), selectedProduct).showDialog()
     }
 
 }
