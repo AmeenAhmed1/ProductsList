@@ -4,4 +4,8 @@
     <string name="price_hint">200 LE</string>
     <string name="description_hint">Description</string>
     <string name="contentdescriptionimage">ContentDescriptionImage</string>
+    <string name="username_hint">Username</string>
+    <string name="login">Login</string>
+    <string name="password_hint">Password</string>
+    <string name="phone_number_hint">Phone number</string>
 </resources>
