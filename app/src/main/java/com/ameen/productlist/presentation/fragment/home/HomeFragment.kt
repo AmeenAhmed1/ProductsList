@@ -1,4 +1,4 @@
-package com.ameen.productlist.presentation.fragment
+package com.ameen.productlist.presentation.fragment.home
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ameen.productlist.core.UserSession
 import com.ameen.productlist.core.wrapper.ResultWrapper
 import com.ameen.productlist.databinding.FragmentHomeBinding
 import com.ameen.productlist.domain.model.ProductModel
@@ -41,6 +43,7 @@ class HomeFragment : Fragment(), ProductItemClickListener {
 
         initObservers()
         initRecycler()
+        initClicks()
 
         return binding.root
     }
@@ -82,6 +85,15 @@ class HomeFragment : Fragment(), ProductItemClickListener {
 
     override fun onProductItemClicked(selectedProduct: ProductModel) {
         ShowProductDialog(requireContext(), selectedProduct).showDialog()
+    }
+
+    private fun initClicks() {
+        binding.logOutButton.setOnClickListener {
+            UserSession.removeUserSession()
+
+            val action = HomeFragmentDirections.actionHomeFragmentToLoginFragment()
+            findNavController().navigate(action)
+        }
     }
 
 }

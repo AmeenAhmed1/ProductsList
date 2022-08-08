@@ -1,4 +1,4 @@
-package com.ameen.productlist.presentation.fragment
+package com.ameen.productlist.presentation.fragment.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

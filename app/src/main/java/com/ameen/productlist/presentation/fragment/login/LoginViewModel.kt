@@ -1,4 +1,4 @@
-package com.ameen.productlist.presentation.fragment
+package com.ameen.productlist.presentation.fragment.login
 
 import androidx.lifecycle.ViewModel
 import com.ameen.productlist.domain.usecase.PhoneNumberLoginUseCase

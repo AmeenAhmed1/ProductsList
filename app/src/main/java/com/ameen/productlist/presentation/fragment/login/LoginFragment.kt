@@ -1,4 +1,4 @@
-package com.ameen.productlist.presentation.fragment
+package com.ameen.productlist.presentation.fragment.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.ameen.productlist.R
+import com.ameen.productlist.core.UserSession
 import com.ameen.productlist.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +27,13 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        initView()
+        UserSession.init(requireContext())
+
+        if (isUserLoggedIn())
+            navigateToHome()
+        else {
+            initView()
+        }
 
         return binding.root
     }
@@ -45,8 +51,8 @@ class LoginFragment : Fragment() {
         )
 
         if (result) {
-            val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
-            findNavController().navigate(action)
+            saveUserToken()
+            navigateToHome()
         } else {
             Toast.makeText(
                 requireContext(),
@@ -55,4 +61,16 @@ class LoginFragment : Fragment() {
         }
     }
 
+    private fun saveUserToken() {
+        UserSession.saveUserLogin()
+    }
+
+    private fun isUserLoggedIn() =
+        UserSession.getUserIsLogin()
+
+
+    private fun navigateToHome() {
+        val action = LoginFragmentDirections.actionLoginFragmentToHomeFragment()
+        findNavController().navigate(action)
+    }
 }
